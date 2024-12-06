@@ -15,12 +15,14 @@ import (
 
 func main() {
 	port := flag.Int("port", 8000, "port to listen on")
+	env := flag.String("env", ".env", "path of the file .env")
 	flag.Parse()
 
 	cfg := config.New()
-	if err := cfg.Init(int16(*port), ".env"); err != nil {
+	if err := cfg.Init(int16(*port), *env); err != nil {
 		panic(err)
 	}
+
 	md := model.New(cfg.DB)
 	repo := repository.New(md)
 	ctl := controller.New(cfg, md, repo)

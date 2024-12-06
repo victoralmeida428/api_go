@@ -33,7 +33,7 @@ func (c *Config) Init(port int16, env string) error {
 	}
 
 	err = dotenv.NewDecoder(file).Decode(c)
-	if c.Port == 0 {
+	if c.Port == 0 || port != 8000 {
 		c.Port = port
 	}
 
