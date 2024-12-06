@@ -48,4 +48,14 @@ func (c *Controller) Home(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+## Build
+### Win
+```bash
+GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o app.exe ./src/main.go 
+```
+### Linux
+```bash
+go build -ldflags "-s -w" ./src/main.go 
+```
+
 
