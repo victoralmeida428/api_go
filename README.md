@@ -7,7 +7,7 @@
 | Name    | Type    |
 |---------|---------|
 | DEBUG   | Boolean |
-| PORT    | Boolean |
+| PORT    | Integer |
 | DB_PASS | String  |
 | DB_HOST | String  |
 | DB_PASS | String  |
