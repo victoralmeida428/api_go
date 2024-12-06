@@ -49,6 +49,7 @@ func (c *Config) Init(port int16, env string) error {
 		return err
 	}
 	c.DB = db
+
 	return nil
 }
 

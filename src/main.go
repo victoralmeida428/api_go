@@ -4,6 +4,8 @@ import (
 	"api/src/config"
 	"api/src/controller"
 	"api/src/middleware"
+	"api/src/model"
+	"api/src/repository"
 	"api/src/router"
 	"flag"
 	"fmt"
@@ -19,9 +21,11 @@ func main() {
 	if err := cfg.Init(int16(*port), ".env"); err != nil {
 		panic(err)
 	}
-	ctl := controller.New(cfg)
+	md := model.New(cfg.DB)
+	repo := repository.New(md)
+	ctl := controller.New(cfg, md, repo)
 
 	r := router.Gerar(ctl)
-
+	fmt.Printf("API running at port %d", cfg.Port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", cfg.Port), middleware.RecoverPanic(middleware.EnableCors(r, cfg), cfg)))
 }

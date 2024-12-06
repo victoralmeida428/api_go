@@ -6,8 +6,11 @@ import (
 )
 
 func (c *Controller) Home(w http.ResponseWriter, r *http.Request) {
-
-	if err := utils.WriteJSON(w, c.cfg, http.StatusOK, nil); err != nil {
+	dados, err := c.repository.Grupo.FindAll()
+	if err != nil {
+		c.cfg.Error.ErrorReponse(w, r, http.StatusInternalServerError, err.Error())
+	}
+	if err := utils.WriteJSON(w, dados, http.StatusOK, nil); err != nil {
 		c.cfg.Error.ErrorReponse(w, r, http.StatusInternalServerError, err.Error())
 	}
 }
