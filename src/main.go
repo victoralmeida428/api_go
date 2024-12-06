@@ -28,6 +28,6 @@ func main() {
 	ctl := controller.New(cfg, md, repo)
 
 	r := router.Gerar(ctl)
-	fmt.Printf("API running at port %d", cfg.Port)
+	fmt.Printf("API running at port %d\n", cfg.Port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", cfg.Port), middleware.RecoverPanic(middleware.EnableCors(r, cfg), cfg)))
 }

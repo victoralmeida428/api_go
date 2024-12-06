@@ -2,7 +2,9 @@ package logJson
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
+	"net/http"
 	"runtime/debug"
 	"sync"
 	"time"
@@ -88,6 +90,12 @@ func (l *Logger) PrintError(message string, properties map[string]string) {
 
 func (l *Logger) PrintFatal(message string, properties map[string]string) {
 	l.print(LevelFatal, message, properties)
+}
+
+func (l *Logger) PrintDebug(r *http.Request, status int, properties map[string]string) {
+	//printa as informaçoes do request
+	msg := fmt.Sprintf("remote address: %s,  uri: %s, status code: %d", r.RemoteAddr, r.RequestURI, status)
+	l.print(LevelInfo, msg, properties)
 }
 
 func (l *Logger) Write(message []byte) (n int, err error) {

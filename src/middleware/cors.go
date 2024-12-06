@@ -2,7 +2,6 @@ package middleware
 
 import (
 	"api/src/config"
-	"fmt"
 	"net/http"
 )
 
@@ -18,10 +17,6 @@ func EnableCors(next http.Handler, cfg *config.Config) http.Handler {
 			w.WriteHeader(http.StatusOK)
 			return
 		}
-
-		//printa as informaçoes do request
-		msg := fmt.Sprintf("remote address: %s,  uri: %s", r.RemoteAddr, r.RequestURI)
-		cfg.Logger.PrintInfo(msg, nil)
 
 		// Chama o próximo handler
 		next.ServeHTTP(w, r)

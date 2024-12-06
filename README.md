@@ -14,7 +14,7 @@
 | DB_USER | String  |
 | DB_NAME | String  |
 | DB_PORT | Integer |
-
+---
 ## Migrate
  - Criar Arquivo
 ```bash
@@ -24,12 +24,12 @@ migrate create -seq -ext=.sql -dir=./src/migrations nome_da_etapa
 ```bash
 migrate -path=./src/migrations -database=postgres://user:password@host:port/dbname up
 ``` 
-
+---
 ## Iniciar
 ```bash
 go run ./src
 ```
- 
+---
 ## Controller
 Pasta onde controla as ações de cada endpoint.<br>
 Exemplo:
@@ -48,7 +48,7 @@ func (c *Controller) Home(w http.ResponseWriter, r *http.Request) {
 	}
 }
 ```
-
+---
 ## Build
 ### Win
 ```bash
